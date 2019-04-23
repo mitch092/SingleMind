@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">SingleMind</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
+    <string name="incorrect">Incorrect username or password.</string>
+    <string name="forgot">Forgot password</string>
+    <string name="signup">Sign up</string>
+    <string name="password_validate">Password again</string>
+    <string name="email">Email</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="phone">Phone number</string>
+    <string name="birthdate">Birthdate (optional)</string>
+    <string name="create">Create new user</string>
+    <string name="error_required_fields">Error: must fill all fields.</string>
+    <string name="error_duplicate_user">Error: This user already exists</string>
 </resources>
