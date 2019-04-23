@@ -16,28 +16,17 @@ public class MainActivity extends AppCompatActivity {
     }
     // Called when the "Sign up" button is pressed.
     public void onSignUp(View view){
-        Intent intent = new Intent(this, Signup.class);
+        Intent intent = new Intent(this, SignupActivity.class);
         startActivity(intent);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    // Called when the "Login" button is pressed.
-    public void onLogin(View view){
-
+    public void onForgot(View view){
+        Intent intent = new Intent(this, ForgotPassActivity.class);
+        startActivity(intent);
     }
 
-    // Called when the "forgot password" button is pressed.
-    public void onForgot(View view){
-
+    public void onLogin(View view){
+        Intent intent = new Intent(this, EventListActivity.class);
+        startActivity(intent);
     }
 }
