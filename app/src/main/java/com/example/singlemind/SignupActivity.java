@@ -2,11 +2,13 @@ package com.example.singlemind;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import com.example.backend.User;
 
-public class Signup extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,6 @@ public class Signup extends AppCompatActivity {
         EditText last_name = (EditText) findViewById(R.id.last_name);
         EditText phone = (EditText) findViewById(R.id.phone);
         EditText birthdate = (EditText) findViewById(R.id.birthdate);
-
-
-
 
 
         //User new_user = new User();
