@@ -6,7 +6,7 @@
     <string name="incorrect">Incorrect username or password.</string>
     <string name="forgot">Forgot password</string>
     <string name="signup">Sign up</string>
-    <string name="password_validate">Password again</string>
+    <string name="password_validate">Repeat password</string>
     <string name="email">Email</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
@@ -15,4 +15,5 @@
     <string name="create">Create new user</string>
     <string name="error_required_fields">Error: must fill all fields.</string>
     <string name="error_duplicate_user">Error: This user already exists</string>
+    <string name="restful_api">https://0a0ddb84-9589-4a60-9d92-ec8f46b570b7.mock.pstmn.io</string>
 </resources>
