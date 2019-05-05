@@ -1,27 +1,15 @@
-package com.example.singlemind.backend.User;
+package com.example.singlemind.backend.User.TransferObjects;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public class User {
-    private int user_id;
-    private String username;
-    private String password;
-    private String email;
-    private String first_name;
-    private String last_name;
-    private int phone;
-    private LocalDateTime creation_date;
-    private Optional<LocalDateTime> birthdate;
-
-
-    public User(int user_id, String username, String password, String email,
-                 String first_name, String last_name,
-                 int phone, LocalDateTime creation_date,
-                 Optional<LocalDateTime> birthdate) {
+public final class UserDatabase {
+    public UserDatabase(int user_id, String username, String email,
+                        String first_name, String last_name,
+                        int phone, LocalDateTime creation_date,
+                        Optional<LocalDateTime> birthdate) {
         this.user_id = user_id;
         this.username = username;
-        this.password = password;
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -39,9 +27,6 @@ public class User {
         return this.username;
     }
 
-    public String getPassword() {
-        return this.password;
-    }
 
     public String getEmail() {return this.email; }
 
@@ -66,9 +51,12 @@ public class User {
     }
 
 
-
-
-
-
-
+    private final int user_id;
+    private final String username;
+    private final String email;
+    private final String first_name;
+    private final String last_name;
+    private final int phone;
+    private final LocalDateTime creation_date;
+    private final Optional<LocalDateTime> birthdate;
 }
