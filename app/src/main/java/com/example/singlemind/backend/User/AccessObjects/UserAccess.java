@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class UserAccess {
-    public UserAccess(FirebaseAuth auth){
+    public UserAccess(){
         database = new UserAccessDatabase();
-        firebase = new UserAccessFirebase(auth);
+        firebase = new UserAccessFirebase();
     }
 
-    public Boolean addUser(String username, String password, String validate_password,
+    public Boolean addUser(FirebaseAuth mAuth, String username, String password, String validate_password,
                            String email, String first_name, String last_name,
                            int phone, Optional<LocalDateTime> birthdate) {
         Boolean firebase_created_user = firebase.addUserFirebase(user.getEmail(),user.getPassword(), mAuth);
@@ -35,20 +35,21 @@ public final class UserAccess {
 
     }
 
-    public Boolean deleteUser(User user) {
+    public Boolean deleteUser(FirebaseAuth mAuth, User user) {
 
     }
 
     public Optional<User> getUserId(int user_id){}
     public Optional<User> getUserUsername(String username){}
+    public Optional<User> getUserEmail(String email){}
 
     public Boolean updateUserUsername(User user, String username){
 
     }
-    public Boolean updateUserPassword(User user, String password, String validate_password){
+    public Boolean updateUserPassword(FirebaseAuth mAuth, User user, String password, String validate_password){
 
     }
-    public Boolean updateUserEmail(User user, String email){}
+    public Boolean updateUserEmail(FirebaseAuth mAuth, User user, String email){}
     public Boolean updateUserFirstName(User user, String first_name){}
     public Boolean updateUserLastName(User user, String last_name){}
     public Boolean updateUserPhone(User user, int phone){}

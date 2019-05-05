@@ -3,49 +3,25 @@ package com.example.singlemind.backend.User.TransferObjects;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class User {
-    public User(UserFirebase firebase_user, UserDatabase database_user) {
-        this.firebase = firebase_user;
-        this.database = database_user;
+public final class User extends NewUser {
+    public User(int user_id, String username, String email,
+                        String first_name, String last_name,
+                        int phone, LocalDateTime creation_date,
+                        Optional<LocalDateTime> birthdate) {
+        super(username, email, first_name, last_name, phone, birthdate);
+        this.user_id = user_id;
+        this.creation_date = creation_date;
     }
 
 
     public int getUserId() {
-        return database.getUserId();
+        return this.user_id;
     }
-
-    public String getUsername() {
-        return database.getUsername();
-    }
-
-    public String getPassword() {
-        return firebase.getPassword();
-    }
-
-    public String getEmail() {return database.getEmail(); }
-
-    public String getFirstName() {
-        return database.getFirstName();
-    }
-
-    public String getLastName() {
-        return database.getLastName();
-    }
-
-    public int getPhone() {
-        return database.getPhone();
-    }
-
     public LocalDateTime getCreationDate() {
-        return database.getCreationDate();
-    }
-
-    public Optional<LocalDateTime> getBirthdate() {
-        return database.getBirthdate();
+        return this.creation_date;
     }
 
 
-    private final UserDatabase database;
-    private final UserFirebase firebase;
-
+    private final int user_id;
+    private final LocalDateTime creation_date;
 }
