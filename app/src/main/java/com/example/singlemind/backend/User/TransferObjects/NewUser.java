@@ -1,38 +1,39 @@
 package com.example.singlemind.backend.User.TransferObjects;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
 public class NewUser {
     public NewUser(String username, String email,
                 String first_name, String last_name,
                 String phone) {
-        this.username = username;
-        this.last_name = last_name;
-        this.first_name = first_name;
-        this.email = email;
-        this.phone = phone;
+        this.Username = username;
+        this.LastName = last_name;
+        this.FirstName = first_name;
+        this.Email = email;
+        this.PhoneNumber = formatPhone(phone);
     }
 
     public String getUsername() {
-        return this.username;
+        return this.Username;
     }
     public String getLastName() {
-        return this.last_name;
+        return this.LastName;
     }
     public String getFirstName() {
-        return this.first_name;
+        return this.FirstName;
     }
-    public String getEmail() {return this.email; }
-    public String getPhone() {
-        return this.phone;
+    public String getEmail() {return this.Email; }
+    public String getPhoneNumber() {
+        return this.PhoneNumber;
+    }
+
+    private String formatPhone(String phone_str){
+        return phone_str.replaceAll("[^\\d]", "" );
     }
 
 
 
-    private final String username;
-    private final String last_name;
-    private final String first_name;
-    private final String email;
-    private final String phone;
+    private final String Username;
+    private final String LastName;
+    private final String FirstName;
+    private final String Email;
+    private final String PhoneNumber;
 }

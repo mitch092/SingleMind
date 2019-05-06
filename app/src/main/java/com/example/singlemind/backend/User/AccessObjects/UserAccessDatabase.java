@@ -6,16 +6,24 @@ import com.example.singlemind.backend.User.TransferObjects.NewUser;
 import com.example.singlemind.backend.User.TransferObjects.User;
 import com.google.gson.Gson;
 
-import org.apache.http.client.fluent.Form;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.entity.ContentType;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public final class UserAccessDatabase {
-    public UserAccessDatabase(){}
+    public static final MediaType JSON
+            = MediaType.get("application/json; charset=utf-8");
+    OkHttpClient client;
+
+    public UserAccessDatabase(){
+        client = new OkHttpClient();
+    }
 
 
     public Boolean addUser(String URL, NewUser user){
@@ -23,20 +31,31 @@ public final class UserAccessDatabase {
         Gson gson = new Gson();
         String data = gson.toJson(user);
 
+        Log.d("newuser_json", data);
+
         // Add the header and the body, like how it is shown in Alex's api.
-        Request request = Request.Post(URL)
+        RequestBody body = RequestBody.create(JSON, data);
+        Request request = new Request.Builder()
+                .url(URL)
                 .addHeader("Content-Type", "application/json")
-                .bodyString(data, ContentType.APPLICATION_JSON);
+                .post(body)
+                .build();
 
         String outgoing = request.toString();
-        Log.d("addUser_outgoing_http", outgoing);
+        String header_str = request.headers().toString();
+        String body_str = request.body().toString();
+        Log.d("http_request", outgoing);
+        Log.d("http_header", header_str);
+        Log.d("http_body", body_str);
 
-        try {
-            int response = request.execute().returnResponse().getStatusLine().getStatusCode();
 
-            Log.d("addUser_response_http", Integer.toString(response));
 
-            if(response != 201)
+        try (Response response = client.newCall(request).execute()){
+            int code = response.code();
+
+            Log.d("addUser_response_http", Integer.toString(code));
+
+            if(code != 201)
                 throw new IOException("Failed to create user. Returned code" + response);
 
             return true;

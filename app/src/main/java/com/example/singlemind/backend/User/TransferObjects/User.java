@@ -1,8 +1,6 @@
 package com.example.singlemind.backend.User.TransferObjects;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 public final class User extends NewUser {
     public User(int user_id, String username, String email,
@@ -10,19 +8,19 @@ public final class User extends NewUser {
                 String phone, LocalDateTime creation_date){
 
         super(username, email, first_name, last_name, phone);
-        this.user_id = user_id;
-        this.creation_date = creation_date;
+        this.UserId = user_id;
+        this.CreationDate = creation_date;
     }
 
 
     public int getUserId() {
-        return this.user_id;
+        return this.UserId;
     }
     public LocalDateTime getCreationDate() {
-        return this.creation_date;
+        return this.CreationDate;
     }
 
 
-    private final int user_id;
-    private final LocalDateTime creation_date;
+    private final int UserId;
+    private final LocalDateTime CreationDate;
 }
