@@ -12,10 +12,8 @@ public final class UserAccess {
         database = new UserAccessDatabase();
         firebase = new UserAccessFirebase();
     }
-
-    public Boolean addUser(FirebaseAuth mAuth, String username, String password, String validate_password,
-                           String email, String first_name, String last_name,
-                           int phone, Optional<LocalDateTime> birthdate) {
+/*
+    public Boolean addUser(FirebaseAuth mAuth, NewUser user, String password, String password_validate) {
         Boolean firebase_created_user = firebase.addUserFirebase(user.getEmail(),user.getPassword(), mAuth);
 
         if(firebase_created_user) {
@@ -54,7 +52,7 @@ public final class UserAccess {
     public Boolean updateUserLastName(User user, String last_name){}
     public Boolean updateUserPhone(User user, int phone){}
     public Boolean updateUserBirthdate(User user, Optional<LocalDateTime> birthdate){}
-
+*/
 
 
 
