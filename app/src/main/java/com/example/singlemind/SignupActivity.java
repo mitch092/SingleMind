@@ -57,27 +57,18 @@ public class SignupActivity extends AppCompatActivity {
 
         Log.d("phone", phone_str);
 
-        /*
+
 
         //User new_user = new User();
 
 
 
-        NewUser user = new NewUser();
-
+        NewUser user = new NewUser(username_str, email_str, first_name_str, last_name_str, phone_str);
 
 
         UserAccessDatabase db = new UserAccessDatabase();
-        String URL = getParent().getApplicationContext().getResources().getString(R.string.user_http)
+        String URL = getResources().getString(R.string.user_http);
         db.addUser(URL, user);
-        */
-    }
 
-
-
-    public void showDatePickerDialog(View view){
-        DialogFragment fragment = new DatePickerFragment();
-        fragment.show(getSupportFragmentManager(), "datePicker");
-        fragment.show(getSupportFragmentManager(), "datePicker");
     }
 }
