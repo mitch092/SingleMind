@@ -1,4 +1,4 @@
-package com.example.singlemind;
+package com.example.singlemind.backend.Event;
 
 import java.time.LocalDateTime;
 
