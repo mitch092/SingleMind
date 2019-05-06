@@ -7,10 +7,9 @@ import java.util.Optional;
 public final class User extends NewUser {
     public User(int user_id, String username, String email,
                 String first_name, String last_name,
-                String phone, LocalDateTime creation_date,
-                Optional<LocalDate> birthdate){
+                String phone, LocalDateTime creation_date){
 
-        super(username, email, first_name, last_name, phone, birthdate);
+        super(username, email, first_name, last_name, phone);
         this.user_id = user_id;
         this.creation_date = creation_date;
     }
