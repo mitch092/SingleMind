@@ -4,11 +4,13 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.singlemind.R;
+import com.example.singlemind.backend.GsonDeserializers.LocalDateTimeDeserializer;
 import com.example.singlemind.backend.Http.HttpLogger;
 import com.example.singlemind.backend.Http.HttpRequester;
 import com.example.singlemind.backend.User.TransferObjects.NewUser;
 import com.example.singlemind.backend.User.TransferObjects.User;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -141,10 +143,12 @@ public final class UserAccessDatabase {
 
             logger.logResponse(response);
 
-            if(!response.isSuccessful()) throw new Exception("Failed to get a user via some field.");
+            if(!response.isSuccessful()) throw new Exception("Failed to get a user via their id or username.");
 
-            Gson gson = new Gson();
-            User user = gson.fromJson(response.body().string(), User.class);
+            User user = new GsonBuilder()
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
+                    .create()
+                    .fromJson(response.body().string(), User.class);
 
 
             return Optional.of(user);

@@ -1,14 +1,14 @@
 package com.example.singlemind.backend.User.TransferObjects;
 
 public class NewUser {
-    public NewUser(String username, String email,
-                String first_name, String last_name,
-                String phone) {
-        this.Username = username;
-        this.LastName = last_name;
-        this.FirstName = first_name;
-        this.Email = email;
-        this.PhoneNumber = phone.replaceAll("[^\\d]", "" );
+    public NewUser(String Username, String Email,
+                String FirstName, String LastName,
+                String PhoneNumber) {
+        this.Username = Username;
+        this.LastName = LastName;
+        this.FirstName = FirstName;
+        this.Email = Email;
+        this.PhoneNumber = PhoneNumber.replaceAll("[^\\d]", "" );
         this.BirthDate = "";
     }
     public NewUser(){

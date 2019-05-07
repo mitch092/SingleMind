@@ -1,53 +1,53 @@
 package com.example.singlemind.backend.Event;
 
+import com.example.singlemind.backend.User.TransferObjects.User;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Event {
-    private int priority = 0; //check
-    private String eventName = "";
-    private String eventDesciption = "";
-    private String definedType = ""; //check
-    private LocalDateTime dateTime;
-
-    public void setPriority(int p){
-        if(p < 0 || p > 9)
-            ;
-        else
-            priority = p;
+public final class Event {
+    public Event(int EventID, int UserID,
+                 String EventName, String EventDesc,
+                 LocalDateTime EventDate, LocalDateTime CreationDate){
+        this.EventID = EventID;
+        this.UserID = UserID;
+        this.EventName = EventName;
+        this.EventDesc = EventDesc;
+        this.EventDate = EventDate;
+        this.CreationDate = CreationDate;
+    }
+    public Event(){
+        this.EventID = 0;
+        this.UserID = 0;
+        this.EventName = "";
+        this.EventDesc = "";
+        this.EventDate = null;
+        this.CreationDate = null;
     }
 
-    public int getPriority() { return priority; }
-
-    public void setEventName(String name) {
-        eventName = name;
+    public int getEventID(){
+        return this.EventID;
+    }
+    public int getUserID(){
+        return this.UserID;
+    }
+    public String getEventName(){
+        return this.EventName;
+    }
+    public String getEventDesc(){
+        return this.EventDesc;
+    }
+    public LocalDateTime getEventDate(){
+        return this.EventDate;
+    }
+    public LocalDateTime getCreationDate(){
+        return this.CreationDate;
     }
 
-    public String getEventName() { return eventName; }
-
-    public void setEventDesciption(String desc) {
-        eventDesciption = desc;
-    }
-
-    public String getEventDesciption() { return eventDesciption; }
-
-    public void setEventType(String type) {
-        definedType = type;
-    }
-
-    public String getEventType() { return definedType; }
-
-    public void setDateTime(LocalDateTime dt) {
-        dateTime = dt;
-    }
-
-    public LocalDateTime getDateTime() { return dateTime; }
-
-    public Event createEvent(int p, String n, String d, String t, LocalDateTime ldt) {
-        setPriority(p);
-        setEventName(n);
-        setEventDesciption(d);
-        setEventType(t);
-        setDateTime(ldt);
-        return this;
-    }
+    private final int EventID;
+    private final int UserID;
+    private final String EventName;
+    private final String EventDesc;
+    private final LocalDateTime EventDate;
+    private final LocalDateTime CreationDate;
 }
