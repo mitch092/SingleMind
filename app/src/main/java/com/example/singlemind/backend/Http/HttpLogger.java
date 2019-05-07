@@ -11,6 +11,7 @@ public class HttpLogger {
         Headers requestHeaders = request.headers();
 
         Log.d("http_outgoing_request", request.toString());
+        Log.d("http_outgoing_body", request.body().toString());
         for (int i = 0, size = requestHeaders.size(); i < size; i++) {
             Log.d("http_outgoing_header",(requestHeaders.name(i) + ": " + requestHeaders.value(i)));
         }

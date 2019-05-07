@@ -9,6 +9,15 @@ public class NewUser {
         this.FirstName = first_name;
         this.Email = email;
         this.PhoneNumber = phone.replaceAll("[^\\d]", "" );
+        this.BirthDate = "";
+    }
+    public NewUser(){
+        this.Username = "";
+        this.LastName = "";
+        this.FirstName = "";
+        this.Email = "";
+        this.PhoneNumber = "";
+        this.BirthDate = "";
     }
 
     public String getUsername() {
@@ -24,6 +33,7 @@ public class NewUser {
     public String getPhoneNumber() {
         return this.PhoneNumber;
     }
+    public String getBirthDate() {return this.BirthDate;}
 
 
 
@@ -32,4 +42,5 @@ public class NewUser {
     private final String FirstName;
     private final String Email;
     private final String PhoneNumber;
+    private final String BirthDate;
 }

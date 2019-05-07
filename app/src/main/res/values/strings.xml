@@ -15,7 +15,7 @@
     <string name="create">Create new user</string>
     <string name="error_required_fields">Error: must fill all fields.</string>
     <string name="error_duplicate_user">Error: This user already exists</string>
-    <string name="user_http">https://0a0ddb84-9589-4a60-9d92-ec8f46b570b7.mock.pstmn.io/users/</string>
+    <string name="user_http">https://0a0ddb84-9589-4a60-9d92-ec8f46b570b7.mock.pstmn.io/users</string>
     <string name="event_http">https://0a0ddb84-9589-4a60-9d92-ec8f46b570b7.mock.pstmn.io/events/</string>
     <string name="event_user_http">https://0a0ddb84-9589-4a60-9d92-ec8f46b570b7.mock.pstmn.io/events/user/</string>
 </resources>
