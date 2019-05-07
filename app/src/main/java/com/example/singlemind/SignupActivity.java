@@ -55,8 +55,6 @@ public class SignupActivity extends AppCompatActivity {
         String last_name_str = last_name.getText().toString();
         String phone_str = phone.getText().toString();
 
-        Log.d("phone", phone_str);
-
 
 
         //User new_user = new User();
