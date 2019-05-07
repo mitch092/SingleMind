@@ -47,8 +47,7 @@ public final class UserAccessDatabase {
 
     public Boolean addUser(NewUser user){
         // The new user must be formatted to json before attaching it to the http post request.
-        Gson gson = new Gson();
-        String data = gson.toJson(user);
+        String data = new Gson().toJson(user);
 
 
         // Add the header and the body, like how it is shown in Alex's api.
