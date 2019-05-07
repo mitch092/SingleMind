@@ -8,7 +8,7 @@ public class NewUser {
         this.LastName = last_name;
         this.FirstName = first_name;
         this.Email = email;
-        this.PhoneNumber = formatPhone(phone);
+        this.PhoneNumber = phone.replaceAll("[^\\d]", "" );
     }
 
     public String getUsername() {
@@ -23,10 +23,6 @@ public class NewUser {
     public String getEmail() {return this.Email; }
     public String getPhoneNumber() {
         return this.PhoneNumber;
-    }
-
-    private String formatPhone(String phone_str){
-        return phone_str.replaceAll("[^\\d]", "" );
     }
 
 
