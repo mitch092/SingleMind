@@ -1,26 +1,33 @@
 package com.example.singlemind.backend.User.TransferObjects;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public final class User extends NewUser {
-    public User(int user_id, String username, String email,
-                String first_name, String last_name,
-                String phone, LocalDateTime creation_date){
+    public User(int UserID, String Username, String Email,
+                String FirstName, String LastName,
+                String PhoneNumber, LocalDateTime CreationDate){
 
-        super(username, email, first_name, last_name, phone);
-        this.UserId = user_id;
-        this.CreationDate = creation_date;
+        super(Username, Email, FirstName, LastName, PhoneNumber);
+        this.UserID = UserID;
+        this.CreationDate = CreationDate;
+    }
+    public User(){
+        super();
+        this.UserID = 0;
+        this.CreationDate = null;
     }
 
 
-    public int getUserId() {
-        return this.UserId;
+    public int getUserID() {
+        return this.UserID;
     }
     public LocalDateTime getCreationDate() {
         return this.CreationDate;
     }
 
 
-    private final int UserId;
+
+    private final int UserID;
     private final LocalDateTime CreationDate;
 }

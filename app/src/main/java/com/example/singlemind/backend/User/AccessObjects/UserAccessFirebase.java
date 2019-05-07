@@ -1,5 +1,6 @@
 package com.example.singlemind.backend.User.AccessObjects;
 
+import com.example.singlemind.backend.User.TransferObjects.User;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
@@ -8,13 +9,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.concurrent.ExecutionException;
 
 public final class UserAccessFirebase {
-    public UserAccessFirebase(){}
+    FirebaseAuth mAuth;
 
-    public Boolean addUser(FirebaseAuth mAuth, String email, String password){
-        Task<AuthResult> task = mAuth.signInWithEmailAndPassword(email, password);
+    public UserAccessFirebase(FirebaseAuth mAuth){
+        this.mAuth = mAuth;
+    }
+
+    public Boolean addUser(String email, String password){
+        Task<AuthResult> task = mAuth.createUserWithEmailAndPassword(email, password);
 
         try {
             AuthResult result = Tasks.await(task);
+            mAuth.signOut();
         } catch (ExecutionException e) {
             return false;
         } catch (InterruptedException e){
@@ -24,7 +30,7 @@ public final class UserAccessFirebase {
         return true;
     }
 
-    public Boolean deleteUser(FirebaseAuth mAuth){
+    public Boolean deleteUser(){
         try {
             Task<Void> task = mAuth.getCurrentUser().delete();
             Tasks.await(task);
@@ -40,7 +46,7 @@ public final class UserAccessFirebase {
 
     }
 
-    public Boolean updateUserEmail(FirebaseAuth mAuth, String new_email){
+    public Boolean updateUserEmail(String new_email){
         try {
             Task<Void> task = mAuth.getCurrentUser().updateEmail(new_email);
             Tasks.await(task);
@@ -54,10 +60,7 @@ public final class UserAccessFirebase {
 
         return true;
     }
-    public Boolean updateUserPassword(FirebaseAuth mAuth, String new_password, String validate_password){
-        if(new_password == validate_password)
-            return false;
-
+    public Boolean updateUserPassword(String new_password){
         try {
             Task<Void> task = mAuth.getCurrentUser().updatePassword(new_password);
             Tasks.await(task);

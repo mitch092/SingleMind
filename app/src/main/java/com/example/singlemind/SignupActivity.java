@@ -65,8 +65,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
         UserAccessDatabase db = new UserAccessDatabase();
-        String URL = getResources().getString(R.string.user_http);
-        db.addUser(URL, user);
+        db.addUser(user);
 
     }
 }
