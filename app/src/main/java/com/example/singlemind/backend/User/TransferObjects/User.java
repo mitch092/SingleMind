@@ -28,6 +28,6 @@ public final class User extends NewUser {
 
 
 
-    private final int UserID;
-    private final LocalDateTime CreationDate;
+    protected final int UserID;
+    protected final LocalDateTime CreationDate;
 }

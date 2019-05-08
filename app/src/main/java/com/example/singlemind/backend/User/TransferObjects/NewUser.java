@@ -37,10 +37,10 @@ public class NewUser {
 
 
 
-    private final String Username;
-    private final String LastName;
-    private final String FirstName;
-    private final String Email;
-    private final String PhoneNumber;
-    private final String BirthDate;
+    protected final String Username;
+    protected final String LastName;
+    protected final String FirstName;
+    protected final String Email;
+    protected final String PhoneNumber;
+    protected final String BirthDate;
 }

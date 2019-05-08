@@ -19,6 +19,6 @@ public final class Event extends NewEvent {
     public int getEventID(){return this.EventID;}
     public LocalDateTime getCreationDate(){return this.CreationDate;}
 
-    private final int EventID;
-    private final LocalDateTime CreationDate;
+    protected final int EventID;
+    protected final LocalDateTime CreationDate;
 }

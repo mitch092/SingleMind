@@ -34,8 +34,8 @@ public class NewEvent {
         return this.EventDate;
     }
 
-    private final int UserID;
-    private final String EventName;
-    private final String EventDesc;
-    private final LocalDateTime EventDate;
+    protected final int UserID;
+    protected final String EventName;
+    protected final String EventDesc;
+    protected final LocalDateTime EventDate;
 }
