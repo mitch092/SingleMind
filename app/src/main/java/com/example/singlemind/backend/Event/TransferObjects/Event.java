@@ -2,10 +2,10 @@ package com.example.singlemind.backend.Event.TransferObjects;
 
 import java.time.LocalDateTime;
 
-public final class Event extends NewEvent {
+public class Event extends NewEvent {
     public Event(int EventID, int UserID,
                     String EventName, String EventDesc,
-                    LocalDateTime EventDate, LocalDateTime CreationDate){
+                    String EventDate, String CreationDate){
         super(UserID, EventName, EventDesc, EventDate);
         this.EventID = EventID;
         this.CreationDate = CreationDate;
@@ -17,8 +17,8 @@ public final class Event extends NewEvent {
     }
 
     public int getEventID(){return this.EventID;}
-    public LocalDateTime getCreationDate(){return this.CreationDate;}
+    public String getCreationDate(){return this.CreationDate;}
 
-    private final int EventID;
-    private final LocalDateTime CreationDate;
+    protected final int EventID;
+    protected final String CreationDate;
 }

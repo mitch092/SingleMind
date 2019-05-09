@@ -29,7 +29,9 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public final class UserAccessDatabase {
-    public static final String URL = Resources.getSystem().getString(R.string.user_http);
+    //public static final String URL = Resources.getSystem().getString(R.string.user_http);
+    public static final String URL = "http://35.211.60.25/singlemind/users";
+    //public static final String URL = "https://0a0ddb84-9589-4a60-9d92-ec8f46b570b7.mock.pstmn.io/users";
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
 
@@ -48,9 +50,12 @@ public final class UserAccessDatabase {
     public Boolean addUser(NewUser user){
         // The new user must be formatted to json before attaching it to the http post request.
         String data = new Gson().toJson(user);
+        Log.d("http_outgoing_json", data);
 
 
         // Add the header and the body, like how it is shown in Alex's api.
+        FormEncodingBuilder b = new FormEn
+
         RequestBody body = RequestBody.create(JSON, data);
         Request request = new Request.Builder()
                 .url(URL)
@@ -69,7 +74,7 @@ public final class UserAccessDatabase {
 
         } catch (Exception e){
 
-            Log.d("http_outgoing_error", e.getMessage());
+            Log.d("http_outgoing_error", e.getMessage()+e.toString()+e.getCause()+e.getStackTrace());
 
             return false;
 

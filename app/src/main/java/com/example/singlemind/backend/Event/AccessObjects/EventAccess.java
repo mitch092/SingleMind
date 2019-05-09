@@ -3,41 +3,45 @@ package com.example.singlemind.backend.Event.AccessObjects;
 import android.content.res.Resources;
 
 import com.example.singlemind.R;
+import com.example.singlemind.backend.Event.TransferObjects.Event;
 import com.example.singlemind.backend.Event.TransferObjects.NewEvent;
 import com.example.singlemind.backend.Http.HttpLogger;
 import com.example.singlemind.backend.Http.HttpRequester;
 
+import java.util.List;
 import java.util.Optional;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EventAccess {
-    public static final String URL = Resources.getSystem().getString(R.string.event_http);
-    public static final MediaType JSON
-            = MediaType.get("application/json; charset=utf-8");
+    private static final String URL = Resources.getSystem().getString(R.string.event_http);
+    private EventAccessService service;
 
-    OkHttpClient client;
-    HttpRequester httpRequester;
-    HttpLogger logger;
 
 
     public EventAccess(){
-        client = new OkHttpClient();
-        httpRequester = new HttpRequester(client);
-        logger = new HttpLogger();
+        service = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(EventAccessService.class);
+
     }
 
-    public Boolean addEvent(NewEvent event){}
-    
-    public Boolean deleteEvent(int event_id){}
+    public Call<Event> addEvent(NewEvent event){
+        return service.addEvent(event);
+    }
 
-    public Optional<NewEvent> getEventByEventID(int event_id){}
-    public Optional<NewEvent> getEventByUserID(int user_id){}
+    public Call<Void> deleteEvent(int event_id){
+        return service.deleteEvent(event_id);
+    }
 
-    public Boolean updateEventName(int event_id){}
-    public Boolean updateEventDesc(int event_id){}
-    public Boolean updateEventDate(int event_id){}
+    public Call<Event> updateEvent(Event event){ return service.updateEvent(event, event.getEventID());}
 
-
+    public Call<Optional<Event>> getEventByEventID(int event_id){ return service.getEventByEventID(event_id);}
+    public Call<List<Event>> getEventsByUserID(int user_id){return service.getEventByUserID(user_id);}
 }

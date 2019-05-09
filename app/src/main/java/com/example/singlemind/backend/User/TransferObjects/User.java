@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public final class User extends NewUser {
     public User(int UserID, String Username, String Email,
                 String FirstName, String LastName,
-                String PhoneNumber, LocalDateTime CreationDate){
+                String PhoneNumber, String CreationDate){
 
         super(Username, Email, FirstName, LastName, PhoneNumber);
         this.UserID = UserID;
@@ -22,12 +22,12 @@ public final class User extends NewUser {
     public int getUserID() {
         return this.UserID;
     }
-    public LocalDateTime getCreationDate() {
+    public String getCreationDate() {
         return this.CreationDate;
     }
 
 
 
-    private final int UserID;
-    private final LocalDateTime CreationDate;
+    protected final int UserID;
+    protected final String CreationDate;
 }
