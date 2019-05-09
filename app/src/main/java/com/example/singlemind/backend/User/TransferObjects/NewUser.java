@@ -9,7 +9,6 @@ public class NewUser {
         this.FirstName = FirstName;
         this.Email = Email;
         this.PhoneNumber = PhoneNumber.replaceAll("[^\\d]", "" );
-        this.BirthDate = "";
     }
     public NewUser(){
         this.Username = "";
@@ -17,7 +16,6 @@ public class NewUser {
         this.FirstName = "";
         this.Email = "";
         this.PhoneNumber = "";
-        this.BirthDate = "";
     }
 
     public String getUsername() {
@@ -33,14 +31,18 @@ public class NewUser {
     public String getPhoneNumber() {
         return this.PhoneNumber;
     }
-    public String getBirthDate() {return this.BirthDate;}
+
+    public void setUsername(String username){ this.Username = username;}
+    public void setLastName(String lastname){ this.LastName = lastname;}
+    public void setFirstName(String firstname){ this.FirstName = firstname;}
+    public void setEmail(String email){this.Email = email;}
+    public void setPhoneNumber(String phone){this.PhoneNumber = phone;}
 
 
 
-    protected final String Username;
-    protected final String LastName;
-    protected final String FirstName;
-    protected final String Email;
-    protected final String PhoneNumber;
-    protected final String BirthDate;
+    protected String Username;
+    protected String LastName;
+    protected String FirstName;
+    protected String Email;
+    protected String PhoneNumber;
 }

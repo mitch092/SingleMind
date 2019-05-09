@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class NewEvent {
     public NewEvent(int UserID,
                     String EventName, String EventDesc,
-                    LocalDateTime EventDate){
+                    String EventDate){
         this.UserID = UserID;
         this.EventName = EventName;
         this.EventDesc = EventDesc;
@@ -30,12 +30,24 @@ public class NewEvent {
     public String getEventDesc(){
         return this.EventDesc;
     }
-    public LocalDateTime getEventDate(){
+    public String getEventDate(){
         return this.EventDate;
     }
 
+    public void setEventName(String eventName){
+        this.EventName = eventName;
+    }
+
+    public void setEventDesc(String eventDesc){
+        this.EventDesc = eventDesc;
+    }
+
+    public void setEventDate(String eventDate){
+        this.EventDate = eventDate;
+    }
+
     protected final int UserID;
-    protected final String EventName;
-    protected final String EventDesc;
-    protected final LocalDateTime EventDate;
+    protected String EventName;
+    protected String EventDesc;
+    protected String EventDate;
 }

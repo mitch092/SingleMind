@@ -64,6 +64,7 @@ public class SignupActivity extends AppCompatActivity {
         NewUser user = new NewUser(username_str, email_str, first_name_str, last_name_str, phone_str);
 
 
+
         UserAccessDatabase db = new UserAccessDatabase();
         db.addUser(user);
 
