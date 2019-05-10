@@ -1,11 +1,9 @@
 package com.example.singlemind.backend.User.AccessObjects;
 
 
-import com.example.singlemind.backend.User.TransferObjects.NewUser;
 import com.example.singlemind.backend.User.TransferObjects.User;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class UserAccess {
@@ -14,7 +12,7 @@ public final class UserAccess {
         firebase = new UserAccessFirebase(mAuth);
     }
 
-    public Boolean addUser(NewUser user, String password) {
+    public Boolean addUser(User user, String password) {
         Boolean database_created_user = database.addUser(user);
 
         if(database_created_user) {
