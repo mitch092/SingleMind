@@ -1,32 +1,23 @@
 package com.example.singlemind.backend.User.AccessObjects;
 
-import android.content.res.Resources;
 import android.util.Log;
 
-import com.example.singlemind.R;
-import com.example.singlemind.backend.GsonDeserializers.LocalDateTimeDeserializer;
 import com.example.singlemind.backend.Http.HttpLogger;
 import com.example.singlemind.backend.Http.HttpRequester;
-import com.example.singlemind.backend.User.TransferObjects.NewUser;
 import com.example.singlemind.backend.User.TransferObjects.User;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Future;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public final class UserAccessDatabase {
     //public static final String URL = Resources.getSystem().getString(R.string.user_http);
@@ -34,6 +25,7 @@ public final class UserAccessDatabase {
     //public static final String URL = "https://0a0ddb84-9589-4a60-9d92-ec8f46b570b7.mock.pstmn.io/users";
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
+            //= MediaType.get("application/x-www-form-urlencoded; charset=utf-8");
 
     OkHttpClient client;
     HttpRequester httpRequester;
@@ -41,20 +33,19 @@ public final class UserAccessDatabase {
 
 
     public UserAccessDatabase(){
-        client = new OkHttpClient();
+        client = getOkHttpClient();
         httpRequester = new HttpRequester(client);
         logger = new HttpLogger();
     }
 
 
-    public Boolean addUser(NewUser user){
+    public Boolean addUser(User user){
         // The new user must be formatted to json before attaching it to the http post request.
         String data = new Gson().toJson(user);
         Log.d("http_outgoing_json", data);
 
 
         // Add the header and the body, like how it is shown in Alex's api.
-        FormEncodingBuilder b = new FormEn
 
         RequestBody body = RequestBody.create(JSON, data);
         Request request = new Request.Builder()
@@ -88,11 +79,11 @@ public final class UserAccessDatabase {
                 .delete()
                 .build();
 
-        logger.logRequest(request);
+        //logger.logRequest(request);
 
         try(Response response = httpRequester.makeRequest(request).get()){
 
-            logger.logResponse(response);
+            //logger.logResponse(response);
 
             return response.isSuccessful();
 
@@ -141,25 +132,29 @@ public final class UserAccessDatabase {
                 .get()
                 .build();
 
-        logger.logRequest(request);
+        //logger.logRequest(request);
+
 
         try(Response response = httpRequester.makeRequest(request).get()){
 
-            logger.logResponse(response);
+            String json = response.body().string();
+
+
+            //logger.logResponse(response);
 
             if(!response.isSuccessful()) throw new Exception("Failed to get a user via their id or username.");
 
-            User user = new GsonBuilder()
-                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer())
-                    .create()
-                    .fromJson(response.body().string(), User.class);
 
 
-            return Optional.of(user);
+            List<User> users = new Gson()
+                    .fromJson(json, new TypeToken<List<User>>(){}.getType());
+
+
+            return Optional.of(users.get(0));
 
         } catch (Exception e){
 
-            Log.d("http_outgoing_error", e.getMessage());
+            Log.d("http_outgoing_error", e.getMessage()+ ": " + e.getCause());
 
             return Optional.empty();
 
@@ -194,5 +189,14 @@ public final class UserAccessDatabase {
             return false;
 
         }
+    }
+
+    private OkHttpClient getOkHttpClient(){
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient okClient = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+        return okClient;
     }
 }

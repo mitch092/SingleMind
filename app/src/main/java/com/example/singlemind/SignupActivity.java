@@ -1,26 +1,17 @@
 package com.example.singlemind;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.singlemind.backend.User.AccessObjects.UserAccessDatabase;
-import com.example.singlemind.backend.User.TransferObjects.NewUser;
+import com.example.singlemind.backend.User.TransferObjects.User;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Optional;
 
 
@@ -61,12 +52,21 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-        NewUser user = new NewUser(username_str, email_str, first_name_str, last_name_str, phone_str);
+        User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
 
 
 
         UserAccessDatabase db = new UserAccessDatabase();
         db.addUser(user);
-
+        /*
+        Optional<User> bad_user = db.getUser("ayyy");
+        if(bad_user.isPresent()){
+            Log.d("http_delete_user", "User ayyy was found.");
+            Log.d("http_user_info", "User ayyy has name: " + bad_user.get().getUsername() + ". Cdate: " + bad_user.get().getCreationDate());
+        }else {
+            Log.d("http_delete_user","User ayyy was not found.");
+        }
+        //db.deleteUser(db.getUser("ayyy").get().getUserID());
+*/
     }
 }

@@ -28,7 +28,7 @@ public class HttpLogger {
         for (int i = 0, size = requestHeaders.size(); i < size; i++) {
             Log.d("http_outgoing_header",(requestHeaders.name(i) + ": " + requestHeaders.value(i)));
         }
-        Log.d("http_outgoing_body", request.body().toString());
+        //Log.d("http_outgoing_body", request.body().toString());
     }
 
     public void logResponse(Response response){
@@ -41,7 +41,7 @@ public class HttpLogger {
             Log.d("http_incoming_header",(responseHeaders.name(i) + ": " + responseHeaders.value(i)));
         }
         try{
-            Log.d("http_incoming_body", response.body().string());
+            //Log.d("http_incoming_body", response.body().string());
         } catch (Exception e){
             Log.d("http_incoming_error", e.getMessage());
         }
