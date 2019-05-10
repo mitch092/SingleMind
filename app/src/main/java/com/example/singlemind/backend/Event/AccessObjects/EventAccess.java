@@ -16,10 +16,6 @@ public class EventAccess {
     private static final String URL = "http://35.211.60.25/singlemind";
     private EventAccessService service;
 
-
-
-
-
     public EventAccess(){
 
         service = new Retrofit.Builder()
