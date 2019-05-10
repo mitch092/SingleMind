@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.singlemind.backend.User.AccessObjects.UserAccess;
 import com.example.singlemind.backend.User.AccessObjects.UserAccessDatabase;
 import com.example.singlemind.backend.User.TransferObjects.User;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -30,6 +32,8 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onCreateUser(View view){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
         EditText password_validate = (EditText) findViewById(R.id.password_validate);
@@ -48,7 +52,6 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-        //User new_user = new User();
 
 
 
@@ -56,9 +59,10 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-        UserAccessDatabase db = new UserAccessDatabase();
-        //db.addUser(user);
+        UserAccess db = new UserAccess(mAuth);
+        db.addUser(user, password_str);
 
+        /*
         Optional<User> bad_user = db.getUser("mitch");
         if(bad_user.isPresent()){
             Log.d("http_delete_user", "User ayyy was found.");
@@ -67,6 +71,6 @@ public class SignupActivity extends AppCompatActivity {
             Log.d("http_delete_user","User ayyy was not found.");
         }
         db.deleteUser(db.getUser("ayyy").get().getUserID());
-
+*/
     }
 }

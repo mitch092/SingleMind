@@ -61,6 +61,7 @@ public final class UserAccessDatabase {
         try(Response response = httpRequester.makeRequest(request).get()){
 
             //logger.logResponse(response);
+            Log.d("success", "successfully added user");
 
             return response.isSuccessful();
 

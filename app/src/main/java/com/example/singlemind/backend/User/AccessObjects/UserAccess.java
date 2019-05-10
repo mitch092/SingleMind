@@ -13,8 +13,10 @@ public final class UserAccess {
     }
 
     public Boolean addUser(User user, String password) {
-        Boolean database_created_user = database.addUser(user);
 
+        return (database.addUser(user) && firebase.addUser(user.getEmail(), password));
+        //Boolean database_created_user = database.addUser(user);
+/*
         if(database_created_user) {
             Boolean firebase_created_user = firebase.addUser(user.getEmail(), password);
 
@@ -31,6 +33,7 @@ public final class UserAccess {
         else{
             return false;
         }
+        */
     }
 
     public Boolean deleteUser(int user_id) {
