@@ -28,7 +28,10 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
 
 
         //test objects
-        events.add(new Event(2, "Birthday", "Billy's Birthday", "1987-12-31 12:00:00:000"));
+        events.add(new Event(2, "Birthday", "Billy's Birthday", "19-05-17 12:00:00"));
+        events.add(new Event(2, "Job Interview", "Meeting at Business Corp.", "19-05-20 08:00:00"));
+        events.add(new Event(2, "Date", "Go out for Coffee", "19-05-21 10:00:00"));
+        events.add(new Event(2, "Doctors Appt.", "Physical", "19-05-20 15:30:00"));
         events.add(new Event());
 
         // set up the RecyclerView

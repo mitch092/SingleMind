@@ -1,51 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddEventActivity">
+    tools:context=".AddEventActivity"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <EditText
         android:id="@+id/eventName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/eventDate"
+        android:hint="Event Title"
+        app:layout_constraintBottom_toTopOf="@+id/addEvent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/eventDate"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="@string/first_name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/eventDesc"
+        android:hint="YY-MM-DD HH:MM::SS"
+        app:layout_constraintBottom_toTopOf="@+id/addEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/eventDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="24dp"
-        android:ems="10"
-        android:hint="@string/last_name"
-        android:inputType="textPersonName"
+        android:hint="Description"
         app:layout_constraintBottom_toTopOf="@+id/addEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,4 +50,4 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

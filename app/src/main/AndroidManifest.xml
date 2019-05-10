@@ -11,18 +11,22 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddEventActivity"></activity>
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".AccountActivity" />
-        <activity android:name=".ForgotPassActivity" />
-        <activity android:name=".EventListActivity" />
+        <activity android:name=".AddEventActivity"
+            android:parentActivityName=".EventListActivity"/>
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".EventListActivity"/>
+        <activity android:name=".AccountActivity"
+            android:parentActivityName=".EventListActivity"/>
+        <activity android:name=".ForgotPassActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".EventListActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".SignupActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

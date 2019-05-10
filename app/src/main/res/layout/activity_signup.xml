@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".SignupActivity"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <EditText
-        android:id="@+id/eventName"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/username"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        tools:layout_editor_absoluteX="99dp" />
 
     <EditText
         android:id="@+id/password"
@@ -27,11 +25,8 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/password_validate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventName" />
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="45dp" />
 
     <EditText
         android:id="@+id/password_validate"
@@ -40,11 +35,7 @@
         android:ems="10"
         android:hint="@string/password_validate"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        tools:layout_editor_absoluteX="99dp" />
 
     <EditText
         android:id="@+id/email"
@@ -53,37 +44,25 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/eventDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_validate" />
+        tools:layout_editor_absoluteX="99dp" />
 
     <EditText
-        android:id="@+id/eventDate"
+        android:id="@+id/first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/first_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/eventDesc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        tools:layout_editor_absoluteX="99dp" />
 
     <EditText
-        android:id="@+id/eventDesc"
+        android:id="@+id/last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/last_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDate" />
+        tools:layout_editor_absoluteX="99dp" />
 
     <EditText
         android:id="@+id/phone"
@@ -92,22 +71,15 @@
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/addEvent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDesc" />
+        tools:layout_editor_absoluteX="99dp" />
 
     <Button
-        android:id="@+id/addEvent"
+        android:id="@+id/createUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onCreateUser"
         android:text="@string/create"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="667dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
