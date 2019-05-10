@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.singlemind.backend.User.AccessObjects.UserAccess;
 import com.example.singlemind.backend.User.AccessObjects.UserAccessDatabase;
 import com.example.singlemind.backend.User.TransferObjects.User;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -29,12 +32,14 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onCreateUser(View view){
-        EditText username = (EditText) findViewById(R.id.eventName);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
         EditText password_validate = (EditText) findViewById(R.id.password_validate);
         EditText email = (EditText) findViewById(R.id.email);
-        EditText first_name = (EditText) findViewById(R.id.eventDate);
-        EditText last_name = (EditText) findViewById(R.id.eventDesc);
+        EditText first_name = (EditText) findViewById(R.id.first_name);
+        EditText last_name = (EditText) findViewById(R.id.last_name);
         EditText phone = (EditText) findViewById(R.id.phone);
 
         String username_str = username.getText().toString();
@@ -45,19 +50,27 @@ public class SignupActivity extends AppCompatActivity {
         String last_name_str = last_name.getText().toString();
         String phone_str = phone.getText().toString();
 
-        //User new_user = new User();
+
+
+
+
+
         User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
-        UserAccessDatabase db = new UserAccessDatabase();
-        db.addUser(user);
+
+
+
+        UserAccess db = new UserAccess(mAuth);
+        db.addUser(user, password_str);
+
         /*
-        Optional<User> bad_user = db.getUser("ayyy");
+        Optional<User> bad_user = db.getUser("mitch");
         if(bad_user.isPresent()){
             Log.d("http_delete_user", "User ayyy was found.");
-            Log.d("http_user_info", "User ayyy has name: " + bad_user.get().getUsername() + ". Cdate: " + bad_user.get().getCreationDate());
+            Log.d("http_user_info", "User ayyy has name: " + bad_user.get().getUsername() + ". Id: " + bad_user.get().getUserID());
         }else {
             Log.d("http_delete_user","User ayyy was not found.");
         }
-        //db.deleteUser(db.getUser("ayyy").get().getUserID());
+        db.deleteUser(db.getUser("ayyy").get().getUserID());
 */
     }
 }

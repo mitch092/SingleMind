@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.singlemind.backend.Http.HttpLogger;
 import com.example.singlemind.backend.Http.HttpRequester;
 import com.example.singlemind.backend.User.TransferObjects.User;
+import com.example.singlemind.backend.User.TransferObjects.Users;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -54,12 +55,13 @@ public final class UserAccessDatabase {
                 .post(body)
                 .build();
 
-        logger.logRequest(request);
+        //logger.logRequest(request);
 
 
         try(Response response = httpRequester.makeRequest(request).get()){
 
-            logger.logResponse(response);
+            //logger.logResponse(response);
+            Log.d("success", "successfully added user");
 
             return response.isSuccessful();
 
@@ -146,11 +148,12 @@ public final class UserAccessDatabase {
 
 
 
-            List<User> users = new Gson()
-                    .fromJson(json, new TypeToken<List<User>>(){}.getType());
+            Users users = new Gson()
+                    .fromJson(json, Users.class);
+            //Log.d("http_user",users.users.get(0));
 
 
-            return Optional.of(users.get(0));
+            return Optional.of(users.users.get(0));
 
         } catch (Exception e){
 
