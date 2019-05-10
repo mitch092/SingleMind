@@ -57,16 +57,16 @@ public class SignupActivity extends AppCompatActivity {
 
 
         UserAccessDatabase db = new UserAccessDatabase();
-        db.addUser(user);
-        /*
-        Optional<User> bad_user = db.getUser("ayyy");
+        //db.addUser(user);
+
+        Optional<User> bad_user = db.getUser("mitch");
         if(bad_user.isPresent()){
             Log.d("http_delete_user", "User ayyy was found.");
-            Log.d("http_user_info", "User ayyy has name: " + bad_user.get().getUsername() + ". Cdate: " + bad_user.get().getCreationDate());
+            Log.d("http_user_info", "User ayyy has name: " + bad_user.get().getUsername() + ". Id: " + bad_user.get().getUserID());
         }else {
             Log.d("http_delete_user","User ayyy was not found.");
         }
-        //db.deleteUser(db.getUser("ayyy").get().getUserID());
-*/
+        db.deleteUser(db.getUser("ayyy").get().getUserID());
+
     }
 }
