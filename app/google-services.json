@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "410036220473",
+    "firebase_url": "https://singlemind-700a7.firebaseio.com",
+    "project_id": "singlemind-700a7",
+    "storage_bucket": "singlemind-700a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410036220473:android:aa87dd6e62b65b90",
+        "android_client_info": {
+          "package_name": "com.example.singlemind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410036220473-or8mt8vl4e4s1t5o2all9fki2atkmafg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIS8uygHYMMsOWUJMpC3C3vQmZpd2JjZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410036220473-or8mt8vl4e4s1t5o2all9fki2atkmafg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
