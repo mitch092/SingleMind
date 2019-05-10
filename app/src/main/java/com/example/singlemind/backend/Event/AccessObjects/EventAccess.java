@@ -3,7 +3,6 @@ package com.example.singlemind.backend.Event.AccessObjects;
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
 import java.util.List;
-import java.util.Optional;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

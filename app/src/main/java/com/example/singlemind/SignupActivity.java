@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -30,12 +29,12 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onCreateUser(View view){
-        EditText username = (EditText) findViewById(R.id.username);
+        EditText username = (EditText) findViewById(R.id.eventName);
         EditText password = (EditText) findViewById(R.id.password);
         EditText password_validate = (EditText) findViewById(R.id.password_validate);
         EditText email = (EditText) findViewById(R.id.email);
-        EditText first_name = (EditText) findViewById(R.id.first_name);
-        EditText last_name = (EditText) findViewById(R.id.last_name);
+        EditText first_name = (EditText) findViewById(R.id.eventDate);
+        EditText last_name = (EditText) findViewById(R.id.eventDesc);
         EditText phone = (EditText) findViewById(R.id.phone);
 
         String username_str = username.getText().toString();
@@ -46,16 +45,8 @@ public class SignupActivity extends AppCompatActivity {
         String last_name_str = last_name.getText().toString();
         String phone_str = phone.getText().toString();
 
-
-
         //User new_user = new User();
-
-
-
         User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
-
-
-
         UserAccessDatabase db = new UserAccessDatabase();
         db.addUser(user);
         /*

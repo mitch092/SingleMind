@@ -7,7 +7,7 @@
     tools:context=".SignupActivity">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/eventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/eventName" />
 
     <EditText
         android:id="@+id/password_validate"
@@ -53,27 +53,27 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/first_name"
+        app:layout_constraintBottom_toTopOf="@+id/eventDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_validate" />
 
     <EditText
-        android:id="@+id/first_name"
+        android:id="@+id/eventDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/first_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/last_name"
+        app:layout_constraintBottom_toTopOf="@+id/eventDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:id="@+id/last_name"
+        android:id="@+id/eventDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_name" />
+        app:layout_constraintTop_toBottomOf="@+id/eventDate" />
 
     <EditText
         android:id="@+id/phone"
@@ -92,14 +92,14 @@
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/create"
+        app:layout_constraintBottom_toTopOf="@+id/addEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_name" />
+        app:layout_constraintTop_toBottomOf="@+id/eventDesc" />
 
     <Button
-        android:id="@+id/create"
+        android:id="@+id/addEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onCreateUser"
