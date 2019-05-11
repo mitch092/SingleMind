@@ -9,16 +9,17 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.singlemind.backend.Event.TransferObjects.Event;
-import com.example.singlemind.backend.Event.TransferObjects.Events;
+
+import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private Events mData;
+    private List<Event> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, Events data) {
+    MyRecyclerViewAdapter(Context context, List<Event> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -33,7 +34,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Event event = mData.events.get(position);
+        Event event = mData.get(position);
         //String color = mData2.get(position);
         holder.myTextView.setText(event.getEventName());
         holder.myTextView2.setText(event.getEventDate());
@@ -44,7 +45,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.events.size();
+        return mData.size();
     }
 
 
@@ -70,7 +71,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     // convenience method for getting data at click position
     public Event getItem(int id) {
-        return mData.events.get(id);
+        return mData.get(id);
     }
 
     // allows clicks events to be caught
