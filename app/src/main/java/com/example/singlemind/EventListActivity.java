@@ -36,7 +36,11 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
         events.add(new Event(2, "Date", "Go out for Coffee", "19-05-21 10:00:00"));
         events.add(new Event(2, "Doctors Appt.", "Physical", "19-05-20 15:30:00"));
         events.add(new Event());*/
+        refreshEvents();
 
+    }
+
+    private void refreshEvents () {
         events = (ArrayList<Event>) eventDB.getEventsByUserID(uid);
 
         // set up the RecyclerView
@@ -45,10 +49,6 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
         adapter = new MyRecyclerViewAdapter(this, events);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
-    }
-
-    private void refreshEvents () {
-
     }
 
     @Override

@@ -10,8 +10,10 @@
         android:id="@+id/acctChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Changes"
+        android:layout_marginStart="126dp"
         android:onClick="onSaveChanges"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="341dp" />
+        android:text="Save Changes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,7 +47,6 @@ public class SignupActivity extends AppCompatActivity {
         String phone_str = phone.getText().toString();
 
         User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
-
         UserAccess db = new UserAccess();
         db.addUser(user, password_str);
 
