@@ -1,6 +1,7 @@
 package com.example.singlemind.backend.Event.AccessObjects;
 
 import com.example.singlemind.backend.Event.TransferObjects.Event;
+import com.example.singlemind.backend.Event.TransferObjects.Events;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +28,8 @@ public interface EventAccessService {
     Call<Void> updateEvent(@Body Event event, @Path("id") int event_id);
 
     @GET("/events/{id}")
-    Call<List<Event>> getEventByEventID(@Path("id") int event_id);
+    Call<Events> getEventByEventID(@Path("id") int event_id);
 
     @GET("/events/user/{id}")
-    Call<List<Event>> getEventByUserID(@Path("id") int user_id);
+    Call<Events> getEventByUserID(@Path("id") int user_id);
 }

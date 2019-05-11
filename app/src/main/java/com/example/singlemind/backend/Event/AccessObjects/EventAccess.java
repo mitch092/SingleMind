@@ -60,7 +60,7 @@ public class EventAccess {
 
     public Optional<Event> getEventByEventID(int event_id){
         try {
-            return Optional.of(service.getEventByEventID(event_id).execute().body().get(0));
+            return Optional.of(service.getEventByEventID(event_id).execute().body().events.get(0));
         } catch(IOException e){
             Log.d("http_IOException", "error getting events by event id");
             return Optional.empty();
@@ -71,9 +71,12 @@ public class EventAccess {
     }
     public List<Event> getEventsByUserID(int user_id){
         try {
-            return service.getEventByUserID(user_id).execute().body();
+            return service.getEventByUserID(user_id).execute().body().events;
         } catch(IOException e){
             Log.d("http_IOException", "error getting events by user id");
+            return Collections.emptyList();
+        } catch(NullPointerException e){
+            Log.d("http_nullptr_exception", "error getting events by event id");
             return Collections.emptyList();
         }
     }
