@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.singlemind.backend.Event.AccessObjects.EventAccess;
 import com.example.singlemind.backend.Event.TransferObjects.Event;
+import com.example.singlemind.backend.Event.TransferObjects.Events;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
 
     EventAccess eventDB = new EventAccess();
     MyRecyclerViewAdapter adapter;
-    ArrayList<Event> events = new ArrayList<>();
+    ArrayList<Event> events = new ArrayList<Event>();
     int uid;
 
     @Override
@@ -37,11 +38,11 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
         events.add(new Event(2, "Doctors Appt.", "Physical", "19-05-20 15:30:00"));
         events.add(new Event());*/
         refreshEvents();
-
     }
 
     private void refreshEvents () {
-        events = (ArrayList<Event>) eventDB.getEventsByUserID(uid);
+        //Events events = new Events(eventDB.getEventsByUserID(uid));
+        events = eventDB.getEventsByUserID(uid);
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvEvents);
@@ -56,7 +57,7 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
         Event selected = new Event();
-        selected = events.get(position);
+        selected = events.events.get(position);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Event Options");

@@ -2,7 +2,7 @@ package com.example.singlemind.backend.Event.AccessObjects;
 
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -13,7 +13,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class EventAccess {
     //private static final String URL = Resources.getSystem().getString(R.string.event_http);
     private static final String URL = "http://35.211.60.25/singlemind";
+
     private EventAccessService service;
+
+    Event event = new Event();
+    ArrayList<Event> events = new ArrayList<Event>();
 
     public EventAccess(){
 
@@ -23,7 +27,6 @@ public class EventAccess {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(EventAccessService.class);
-
     }
 
     public Call<Void> addEvent(Event event){
@@ -36,9 +39,11 @@ public class EventAccess {
 
     public Call<Void> updateEvent(Event event){ return service.updateEvent(event, event.getEventID());}
 
-    public Call<List<Event>> getEventByEventID(int event_id){ return service.getEventByEventID(event_id);}
-    public Call<List<Event>> getEventsByUserID(int user_id){return service.getEventByUserID(user_id);}
-
+    public Call<Event> getEventByEventID(int event_id){ return service.getEventByEventID(event_id);}
+    public Call<ArrayList<Event>> getEventsByUserID(int user_id){
+        events = service.getEventByUserID(user_id);
+        return events;
+    }
 
     private OkHttpClient getOkHttpClient(){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
