@@ -1,17 +1,14 @@
 package com.example.singlemind;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.singlemind.backend.User.AccessObjects.UserAccess;
-import com.example.singlemind.backend.User.AccessObjects.UserAccessDatabase;
 import com.example.singlemind.backend.User.TransferObjects.User;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -32,7 +29,6 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onCreateUser(View view){
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
@@ -50,16 +46,9 @@ public class SignupActivity extends AppCompatActivity {
         String last_name_str = last_name.getText().toString();
         String phone_str = phone.getText().toString();
 
-
-
-
-
-
         User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
 
-
-
-        UserAccess db = new UserAccess(mAuth);
+        UserAccess db = new UserAccess();
         db.addUser(user, password_str);
 
         /*

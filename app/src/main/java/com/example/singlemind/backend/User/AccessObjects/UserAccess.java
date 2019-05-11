@@ -2,19 +2,18 @@ package com.example.singlemind.backend.User.AccessObjects;
 
 
 import com.example.singlemind.backend.User.TransferObjects.User;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Optional;
 
 public final class UserAccess {
-    public UserAccess(FirebaseAuth mAuth){
+    public UserAccess(){
         database = new UserAccessDatabase();
-        firebase = new UserAccessFirebase(mAuth);
+
     }
 
     public Boolean addUser(User user, String password) {
 
-        return (database.addUser(user) && firebase.addUser(user.getEmail(), password));
+        return (database.addUser(user));
         //Boolean database_created_user = database.addUser(user);
 /*
         if(database_created_user) {
@@ -37,7 +36,7 @@ public final class UserAccess {
     }
 
     public Boolean deleteUser(int user_id) {
-        return (firebase.deleteUser() && database.deleteUser(user_id));
+        return (database.deleteUser(user_id));
     }
 
     public Optional<User> getUser(int user_id){
@@ -51,24 +50,14 @@ public final class UserAccess {
         return database.updateUserUsername(user_id, username);
     }
     public Boolean updateUserPassword(String password){
-        return firebase.updateUserPassword(password);
+        return database.updateUserPassword(password);
     }
+
     public Boolean updateUserEmail(User user, String new_email){
         String old_email = user.getEmail();
         int user_id = user.getUserID();
         Boolean database_email_updated = database.updateUserEmail(user_id, new_email);
-
-        if(database_email_updated){
-            Boolean firebase_email_updated = firebase.updateUserEmail(new_email);
-            if(firebase_email_updated){
-                return true;
-            } else{
-                database.updateUserEmail(user_id, old_email);
-                return false;
-            }
-        } else{
-            return false;
-        }
+        return true;
     }
     public Boolean updateUserFirstName(int user_id, String first_name){
         return database.updateUserFirstName(user_id, first_name);
@@ -81,5 +70,4 @@ public final class UserAccess {
     }
 
     private final UserAccessDatabase database;
-    private final UserAccessFirebase firebase;
 }

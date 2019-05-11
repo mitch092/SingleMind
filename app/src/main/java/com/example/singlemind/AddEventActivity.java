@@ -10,11 +10,15 @@ import com.example.singlemind.backend.Event.AccessObjects.EventAccess;
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
 public class AddEventActivity extends AppCompatActivity {
+
+    int uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
+        uid = Globals.getInstance().user.getUserID();
     }
 
     public void onAddEvent(View view) {
@@ -26,7 +30,6 @@ public class AddEventActivity extends AppCompatActivity {
         String date = eventDate.getText().toString();
         String desc = eventDesc.getText().toString();
 
-        int user_id = 0;
         /*
         //User new_user = new User();
         User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
@@ -34,7 +37,7 @@ public class AddEventActivity extends AppCompatActivity {
         db.addUser(user);
         */
 
-        Event event = new Event(user_id, name, desc, date);
+        Event event = new Event(uid, name, desc, date);
         EventAccess eventDB = new EventAccess();
         eventDB.addEvent(event);
     }

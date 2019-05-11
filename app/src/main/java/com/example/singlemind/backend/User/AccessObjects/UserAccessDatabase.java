@@ -7,9 +7,7 @@ import com.example.singlemind.backend.Http.HttpRequester;
 import com.example.singlemind.backend.User.TransferObjects.User;
 import com.example.singlemind.backend.User.TransferObjects.Users;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.util.List;
 import java.util.Optional;
 
 import okhttp3.FormBody;
@@ -201,5 +199,10 @@ public final class UserAccessDatabase {
                 .addInterceptor(logging)
                 .build();
         return okClient;
+    }
+
+    public Boolean updateUserPassword(String password) {
+
+        return true;
     }
 }
