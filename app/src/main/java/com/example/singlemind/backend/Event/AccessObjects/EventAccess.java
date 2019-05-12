@@ -3,6 +3,7 @@ package com.example.singlemind.backend.Event.AccessObjects;
 import android.util.Log;
 
 import com.example.singlemind.backend.Event.TransferObjects.Event;
+import com.example.singlemind.backend.Http.HttpRequester;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -10,8 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,22 +22,27 @@ public class EventAccess {
     //private static final String URL = Resources.getSystem().getString(R.string.event_http);
     private static final String URL = "http://35.211.60.25/singlemind";
     private EventAccessService service;
+    OkHttpClient client;
+
 
     public EventAccess(){
+        client = getOkHttpClient();
 
         service = new Retrofit.Builder()
                 .baseUrl(URL)
-                .client(getOkHttpClient())
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(EventAccessService.class);
 
+
+
     }
 
     public Boolean addEvent(Event event){
-        try {
-            return service.addEvent(event).execute().isSuccessful();
-        } catch(IOException e){
+        try (Response response = service.addEvent(event).get()){
+
+        } catch(Exception e){
             Log.d("http_IOException", "error adding events");
             return false;
         }
