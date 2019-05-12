@@ -3,6 +3,7 @@ package com.example.singlemind;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,6 +28,9 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitNetwork().build();
+        StrictMode.setThreadPolicy(policy);
 
         uid = Globals.getInstance().user.getUserID();
 

@@ -144,8 +144,6 @@ public final class UserAccessDatabase {
 
             if(!response.isSuccessful()) throw new Exception("Failed to get a user via their id or username.");
 
-
-
             Users users = new Gson()
                     .fromJson(json, Users.class);
             //Log.d("http_user",users.users.get(0));
