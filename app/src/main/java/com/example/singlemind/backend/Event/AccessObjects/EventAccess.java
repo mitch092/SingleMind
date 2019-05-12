@@ -5,8 +5,7 @@ import android.util.Log;
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import okhttp3.OkHttpClient;
@@ -16,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EventAccess {
     //private static final String URL = Resources.getSystem().getString(R.string.event_http);
-    private static final String URL = "http://35.211.60.25/singlemind/";
+    private static final String URL = "http://35.211.60.25/";
     private EventAccessService service;
 
     public EventAccess(){
@@ -59,7 +58,8 @@ public class EventAccess {
 
     public Optional<Event> getEventByEventID(int event_id){
         try {
-            return Optional.of(service.getEventByEventID(event_id).execute().body());
+            return Optional.of(service.getEventByEventID(event_id)
+                    .execute().body().getEventByEventID(event_id));
         } catch(IOException e){
             Log.d("http_IOException", "error getting events by event id");
             return Optional.empty();
@@ -68,15 +68,19 @@ public class EventAccess {
             return Optional.empty();
         }
     }
-    public List<Event> getEventsByUserID(int user_id){
+    public ArrayList<Event> getEventsByUserID(int user_id){
+        ArrayList<Event> evnt = new ArrayList<>();
+        evnt.clear();
         try {
-            return service.getEventByUserID(user_id).execute().body();
+            for(int i = 0; i < service.getEventByUserID(user_id).execute().body().size(); i++)
+                evnt.add(service.getEventByUserID(user_id).execute().body().get(i));
+            return evnt;
         } catch(IOException e){
             Log.d("http_IOException", "error getting events by user id");
-            return Collections.emptyList();
+            return evnt;
         } catch(NullPointerException e){
             Log.d("http_nullptr_exception", "error getting events by event id");
-            return Collections.emptyList();
+            return evnt;
         }
     }
 

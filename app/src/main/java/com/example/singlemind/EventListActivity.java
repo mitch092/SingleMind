@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.singlemind.backend.Event.AccessObjects.EventAccess;
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class EventListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
     EventAccess eventDB = new EventAccess();
     MyRecyclerViewAdapter adapter;
-    List<Event> events;
+    ArrayList<Event> events = new ArrayList<>();
     int uid;
 
     @Override
@@ -36,6 +36,7 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
         events.add(new Event(2, "Date", "Go out for Coffee", "19-05-21 10:00:00"));
         events.add(new Event(2, "Doctors Appt.", "Physical", "19-05-20 15:30:00"));
         events.add(new Event());*/
+
         refreshEvents();
     }
 

@@ -10,16 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<Event> mData;
+    private ArrayList<Event> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<Event> data) {
+    MyRecyclerViewAdapter(Context context, ArrayList<Event> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }

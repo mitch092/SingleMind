@@ -20,11 +20,18 @@ public class Event {
         this.CreationDate = "";
     }
 
-    public Event getEvent (int uid) {
-        //if (uid == UserID)
+    public Event getEventByUserID(int uid) {
+        if (uid == UserID)
             return this;
+        else
+            return null;
     }
-
+    public Event getEventByEventID(int eid) {
+        if (eid == EventID)
+            return this;
+        else
+            return null;
+    }
     public int getUserID(){
         return this.UserID;
     }

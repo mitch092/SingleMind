@@ -11,6 +11,6 @@ public class Events {
         int uid = Globals.getInstance().user.getUserID();
         if (!evnt.isEmpty())
             for (int i = 0; i < evnt.size(); i++)
-                events.add(evnt.get(i).getEvent(uid));
+                events.add(evnt.get(i).getEventByUserID(uid));
     }
 }

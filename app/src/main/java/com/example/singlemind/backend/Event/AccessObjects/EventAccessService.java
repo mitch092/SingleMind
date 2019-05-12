@@ -2,7 +2,7 @@ package com.example.singlemind.backend.Event.AccessObjects;
 
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,19 +15,19 @@ import retrofit2.http.Path;
 
 public interface EventAccessService {
     @Headers("Content-Type: application/json")
-    @POST("/events/")
+    @POST("singlemind/events")
     Call<Void> addEvent(@Body Event event);
 
-    @DELETE("/events/{id}/")
+    @DELETE("singlemind/events/{id}")
     Call<Void> deleteEvent(@Path("id") int event_id);
 
     @Headers("Content-Type: application/json")
-    @PUT("/events/{id}/")
+    @PUT("singlemind/events/{id}")
     Call<Void> updateEvent(@Body Event event, @Path("id") int event_id);
 
-    @GET("/events/{id}/")
+    @GET("singlemind/events/{id}")
     Call<Event> getEventByEventID(@Path("id") int event_id);
 
-    @GET("/events/user/{id}/")
-    Call<List<Event>> getEventByUserID(@Path("id") int user_id);
+    @GET("singlemind/events/user/{id}")
+    Call<ArrayList<Event>> getEventByUserID(@Path("id") int user_id);
 }
