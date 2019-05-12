@@ -13,4 +13,12 @@ public class Events {
             for (int i = 0; i < evnt.size(); i++)
                 events.add(evnt.get(i).getEventByUserID(uid));
     }
+
+    public Event getEventByIndex(int pos) {
+        //Event event = new Event();
+        //int index = events.indexOf(pos);
+        return events.get(events.size()-1);
+    }
+
+    public Events () {}
 }

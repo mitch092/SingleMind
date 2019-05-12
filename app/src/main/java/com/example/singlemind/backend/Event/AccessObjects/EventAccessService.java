@@ -1,10 +1,11 @@
 package com.example.singlemind.backend.Event.AccessObjects;
 
 import com.example.singlemind.backend.Event.TransferObjects.Event;
+import com.example.singlemind.backend.Event.TransferObjects.Events;
 
-import java.util.ArrayList;
+import java.util.concurrent.Future;
 
-import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -15,19 +16,19 @@ import retrofit2.http.Path;
 
 public interface EventAccessService {
     @Headers("Content-Type: application/json")
-    @POST("singlemind/events")
-    Call<Void> addEvent(@Body Event event);
+    @POST("/events")
+    Future<Response> addEvent(@Body Event event);
 
-    @DELETE("singlemind/events/{id}")
-    Call<Void> deleteEvent(@Path("id") int event_id);
+    @DELETE("/events/{id}")
+    Future<Void> deleteEvent(@Path("id") int event_id);
 
     @Headers("Content-Type: application/json")
-    @PUT("singlemind/events/{id}")
-    Call<Void> updateEvent(@Body Event event, @Path("id") int event_id);
+    @PUT("/events/{id}")
+    Future<Void> updateEvent(@Body Event event, @Path("id") int event_id);
 
-    @GET("singlemind/events/{id}")
-    Call<Event> getEventByEventID(@Path("id") int event_id);
+    @GET("/events/{id}")
+    Future<Events> getEventByEventID(@Path("id") int event_id);
 
-    @GET("singlemind/events/user/{id}")
-    Call<ArrayList<Event>> getEventByUserID(@Path("id") int user_id);
+    @GET("/events/user/{id}")
+    Future<Events> getEventByUserID(@Path("id") int user_id);
 }

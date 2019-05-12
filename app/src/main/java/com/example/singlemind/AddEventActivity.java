@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.singlemind.backend.Event.AccessObjects.EventAccess;
+import com.example.singlemind.backend.Event.AccessObjects.EventAccess2;
 import com.example.singlemind.backend.Event.TransferObjects.Event;
 
 public class AddEventActivity extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class AddEventActivity extends AppCompatActivity {
         */
 
         Event event = new Event(uid, name, desc, date);
-        EventAccess eventDB = new EventAccess();
+        EventAccess2 eventDB = new EventAccess2();
         eventDB.addEvent(event);
     }
 }

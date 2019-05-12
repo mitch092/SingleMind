@@ -22,7 +22,7 @@
         android:id="@+id/eventDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="YY-MM-DD HH:MM::SS"
+        android:hint="Day, YY-MM-DD HH:MM::SS"
         app:layout_constraintBottom_toTopOf="@+id/addEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -3,7 +3,6 @@ package com.example.singlemind;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,25 +11,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.singlemind.backend.Event.AccessObjects.EventAccess;
+import com.example.singlemind.backend.Event.AccessObjects.EventAccess2;
 import com.example.singlemind.backend.Event.TransferObjects.Event;
-
-import java.util.ArrayList;
+import com.example.singlemind.backend.Event.TransferObjects.Events;
 
 public class EventListActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
-    EventAccess eventDB = new EventAccess();
+    EventAccess2 eventDB = new EventAccess2();
     MyRecyclerViewAdapter adapter;
-    ArrayList<Event> events = new ArrayList<>();
+    //ArrayList<Event> events = new ArrayList<>();
     int uid;
+    Events events = new Events();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitNetwork().build();
-        StrictMode.setThreadPolicy(policy);
+        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitNetwork().build();
+        //StrictMode.setThreadPolicy(policy);
 
         uid = Globals.getInstance().user.getUserID();
 
@@ -45,8 +44,7 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
     }
 
     private void refreshEvents () {
-        //Events events = new Events(eventDB.getEventsByUserID(uid));
-        events = eventDB.getEventsByUserID(uid);
+        events = eventDB.getEventsByUserId(uid);
         //Events e = new Events(events);
 
         // set up the RecyclerView
@@ -72,8 +70,13 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //modify or update event OR delete current event and call add event
-
+                        int eid = events.getEventByIndex(position).getEventID();
+                        eventDB.deleteEventByEventId(eid);
+                        Intent intent;
+                        intent = new Intent(getParent(), AddEventActivity.class);
+                        startActivity(intent);
                         dialog.cancel();
+
                     }
                 }
         );
@@ -83,7 +86,9 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //delete event
-
+                        int eid = events.getEventByIndex(position).getEventID();
+                        eventDB.deleteEventByEventId(eid);
+                        refreshEvents();
                         dialog.cancel();
                     }
                 }
