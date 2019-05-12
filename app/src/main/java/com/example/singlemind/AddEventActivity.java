@@ -1,5 +1,6 @@
 package com.example.singlemind;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -40,5 +41,8 @@ public class AddEventActivity extends AppCompatActivity {
         Event event = new Event(uid, name, desc, date);
         EventAccess2 eventDB = new EventAccess2();
         eventDB.addEvent(event);
+
+        Intent intent = new Intent(this, EventListActivity.class);
+        startActivity(intent);
     }
 }

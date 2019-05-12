@@ -14,6 +14,7 @@ import com.example.singlemind.backend.Event.TransferObjects.Events;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private Events mData;
+    public int[] EventIDs;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 

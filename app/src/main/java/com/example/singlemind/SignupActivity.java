@@ -1,5 +1,6 @@
 package com.example.singlemind;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.singlemind.backend.Event.AccessObjects.EventAccess2;
+import com.example.singlemind.backend.Event.TransferObjects.Event;
 import com.example.singlemind.backend.User.AccessObjects.UserAccess;
 import com.example.singlemind.backend.User.TransferObjects.User;
 
@@ -49,6 +52,19 @@ public class SignupActivity extends AppCompatActivity {
         User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
         UserAccess db = new UserAccess();
         db.addUser(user, password_str);
+
+        int uid = user.getUserID();
+        EventAccess2 eventDB = new EventAccess2();
+
+        Event event = new Event(
+                uid,
+                "Hello New User!",
+                "Welcome to SingleMind! This is a placeholder Event to demonstrate the format. To Add a New Event, Tap the middle button at the Top of your Screen!",
+                "19-05-01 12:00:00");
+        eventDB.addEvent(event);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
         /*
         Optional<User> bad_user = db.getUser("mitch");

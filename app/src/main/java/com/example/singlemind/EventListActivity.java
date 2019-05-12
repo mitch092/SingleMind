@@ -22,6 +22,7 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
     //ArrayList<Event> events = new ArrayList<>();
     int uid;
     Events events = new Events();
+    boolean OnDialogCheck = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,28 +66,26 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
         builder.setTitle("Event Options");
         builder.setMessage("Modify, Delete, or Cancel");
 
-        builder.setPositiveButton("Modify",
+        /*builder.setPositiveButton("Modify",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //OnDialogCheck = true;
                         //modify or update event OR delete current event and call add event
-                        int eid = events.getEventByIndex(position).getEventID();
+                        int eid = adapter.getItem(position).getEventID();
                         eventDB.deleteEventByEventId(eid);
-                        Intent intent;
-                        intent = new Intent(getParent(), AddEventActivity.class);
-                        startActivity(intent);
                         dialog.cancel();
-
                     }
                 }
-        );
+        );*/
 
-        builder.setNeutralButton("Delete",
+        builder.setPositiveButton("Delete",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //delete event
-                        int eid = events.getEventByIndex(position).getEventID();
+                        //OnDialogCheck = false;
+                        int eid = adapter.getItem(position).getEventID();
                         eventDB.deleteEventByEventId(eid);
                         refreshEvents();
                         dialog.cancel();
@@ -98,11 +97,13 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //OnDialogCheck = false;
                         dialog.cancel();
                     }
                 }
                 );
         AlertDialog dialog = builder.create();
+        //OnDialogCheck = true;
         dialog.show();
     }
 
@@ -117,5 +118,39 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
     public void onSettings(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /*if(OnDialogCheck) {
+            Intent intent = new Intent(this, AddEventActivity.class);
+            startActivity(intent);
+        }
+        else OnDialogCheck = false;*/
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //OnDialogCheck = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

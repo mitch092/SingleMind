@@ -190,10 +190,11 @@ public final class EventAccess2 {
 
             if(!response.isSuccessful()) throw new Exception("Failed to get a user via their id or username.");
 
-            Events events = new Gson()
-                    .fromJson(json, Events.class);
+            Events events = new Gson().fromJson(json, Events.class);
             //Log.d("http_user",users.users.get(0));
+            if(events.events.isEmpty()) {
 
+            }
             return events;
             //return Optional.of(events.events.get(0));
 
