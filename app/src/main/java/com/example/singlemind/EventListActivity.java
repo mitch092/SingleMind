@@ -3,6 +3,7 @@ package com.example.singlemind;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -62,11 +63,19 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
 
         Event selected = new Event();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Event Options");
-        builder.setMessage("Modify, Delete, or Cancel");
+        boolean minList = true;
+        if(adapter.getItemCount() <= 1)
+            minList = true;
+        else minList = false;
 
-        /*builder.setPositiveButton("Modify",
+        Log.d("Recycler Item Counter", "" + adapter.getItemCount());
+
+        if(!minList) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Event Options");
+            builder.setMessage("Modify, Delete, or Cancel");
+
+            /*builder.setPositiveButton("Modify",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -79,32 +88,33 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
                 }
         );*/
 
-        builder.setPositiveButton("Delete",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //delete event
-                        //OnDialogCheck = false;
-                        int eid = adapter.getItem(position).getEventID();
-                        eventDB.deleteEventByEventId(eid);
-                        refreshEvents();
-                        dialog.cancel();
+            builder.setPositiveButton("Delete",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //delete event
+                            //OnDialogCheck = false;
+                            int eid = adapter.getItem(position).getEventID();
+                            eventDB.deleteEventByEventId(eid);
+                            refreshEvents();
+                            dialog.cancel();
+                        }
                     }
-                }
-        );
+            );
 
-        builder.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //OnDialogCheck = false;
-                        dialog.cancel();
+            builder.setNegativeButton("Cancel",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //OnDialogCheck = false;
+                            dialog.cancel();
+                        }
                     }
-                }
-                );
-        AlertDialog dialog = builder.create();
-        //OnDialogCheck = true;
-        dialog.show();
+            );
+            AlertDialog dialog = builder.create();
+            //OnDialogCheck = true;
+            dialog.show();
+        }
     }
 
     public void onAcct(View view){
