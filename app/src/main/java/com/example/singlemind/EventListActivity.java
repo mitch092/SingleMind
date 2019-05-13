@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +51,7 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
         Event selected = new Event();
 
@@ -61,12 +60,10 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
             minList = true;
         else minList = false;
 
-        //Log.d("Recycler Item Counter", "" + adapter.getItemCount());
-
         if(!minList) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Event Options");
-            builder.setMessage("Modify, Delete, or Cancel");
+            builder.setMessage("Delete Event?");
 
             /*builder.setPositiveButton("Modify",
                 new DialogInterface.OnClickListener() {

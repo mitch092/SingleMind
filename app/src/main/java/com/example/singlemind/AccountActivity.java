@@ -54,7 +54,7 @@ public class AccountActivity extends AppCompatActivity {
         if(u_str.isEmpty() || e_str.isEmpty() || p_str.isEmpty() || f_str.isEmpty() || l_str.isEmpty())
             Toast.makeText(
                     AccountActivity.this,
-                    "No Event added",
+                    "No Changes Made",
                     Toast.LENGTH_SHORT).show();
         else {
             Globals.getInstance().user.setUsername(u_str);

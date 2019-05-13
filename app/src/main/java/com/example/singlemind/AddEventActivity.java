@@ -57,12 +57,6 @@ public class AddEventActivity extends AppCompatActivity {
             try {
                 Event event = new Event(uid, name, desc, date);
                 eventDB.addEvent(event);
-
-                if (eventDB.getEventsByUserId(uid).events.isEmpty())
-                    Toast.makeText(
-                            AddEventActivity.this,
-                            "No Event added",
-                            Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, EventListActivity.class);
                 startActivity(intent);
             } catch (Exception e){

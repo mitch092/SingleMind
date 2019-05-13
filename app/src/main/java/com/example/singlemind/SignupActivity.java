@@ -59,26 +59,34 @@ public class SignupActivity extends AppCompatActivity {
                 || phone_str.isEmpty()) {
             Toast.makeText(
                     SignupActivity.this,
-                    "No Event added",
+                    "User Not Added",
                     Toast.LENGTH_SHORT).show();
         }
         else {
-            User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
-            UserAccess db = new UserAccess();
-            db.addUser(user, password_str);
+            try {
+                User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
+                UserAccess db = new UserAccess();
+                db.addUser(user, password_str);
 
-            int uid = user.getUserID();
-            EventAccess2 eventDB = new EventAccess2();
+                int uid = db.getUser(username_str).get().getUserID();
+                EventAccess2 eventDB = new EventAccess2();
 
-            Event event = new Event(
-                    uid,
-                    "Hello New User!",
-                    "Welcome to SingleMind! This is a placeholder Event to demonstrate the format. To Add a New Event, Tap the middle button at the Top of your Screen!",
-                    "19-05-01 12:00:00");
-            eventDB.addEvent(event);
+                Event event = new Event(
+                        uid,
+                        "Hello New User!",
+                        "Welcome to SingleMind! This is a placeholder Event to demonstrate the format. To Add a New Event, Tap the Add New Event Button at the Top of your Screen! If you have more than one event, you can delete events by tapping on the event you wish to remove.",
+                        "19-05-01 12:00:00");
+                eventDB.addEvent(event);
 
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(
+                        SignupActivity.this,
+                        "User Not Added",
+                        Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 }
