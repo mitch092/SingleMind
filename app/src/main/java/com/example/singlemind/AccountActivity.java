@@ -31,6 +31,12 @@ public class AccountActivity extends AppCompatActivity {
 
         phone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
+        username.setText(acct.getUsername());
+        email.setText(acct.getEmail());
+        phone.setText(acct.getPhoneNumber());
+        fname.setText(acct.getFirstName());
+        lname.setText(acct.getLastName());
+
         username.setHint(acct.getUsername());
         email.setHint(acct.getEmail());
         phone.setHint(acct.getPhoneNumber());

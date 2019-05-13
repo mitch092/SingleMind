@@ -7,11 +7,11 @@
     tools:context=".ForgotPassActivity">
 
     <EditText
-        android:id="@+id/emailVal"
+        android:id="@+id/emailFP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="231dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginTop="309dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -24,29 +24,27 @@
         android:id="@+id/emailToSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:text="."
         app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailVal" />
+        app:layout_constraintEnd_toEndOf="@+id/submit"
+        app:layout_constraintStart_toStartOf="@+id/submit"
+        app:layout_constraintTop_toBottomOf="@+id/emailFP" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="297dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="269dp"
         android:onClick="onSubmit"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailToSend" />
+        app:layout_constraintTop_toBottomOf="@+id/emailFP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

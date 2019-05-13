@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -104,6 +105,12 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
             AlertDialog dialog = builder.create();
             //OnDialogCheck = true;
             dialog.show();
+        }
+        else {
+            Toast.makeText(
+                    EventListActivity.this,
+                    "Can't Delete Event",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
