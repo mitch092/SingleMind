@@ -46,12 +46,14 @@ public class Events {
     }
 
     public Events () {
-        /*Event event = new Event(
-                uid,
-                "Hello New User!",
-                "Welcome to SingleMind! This is a placeholder Event to demonstrate the format. To Add a New Event, Tap the middle button at the Top of your Screen!",
-                "19-05-01 12:00:00");
-        eventDB.addEvent(event);
-        events.add(event);*/
+        /*
+        uid = Globals.getInstance().user.getUserID();
+        List<Event> evnt = eventDB.getEventsByUserId(uid).events;
+        if (!evnt.isEmpty())
+            for (int i = 0; i < evnt.size(); i++) {
+                events.add(evnt.get(i).getEventByUserID(uid));
+                IDs[i] = evnt.get(i).getEventID();
+            }
+            */
     }
 }

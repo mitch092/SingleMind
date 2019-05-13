@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +37,7 @@ public class SignupActivity extends AppCompatActivity {
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
         EditText password_validate = (EditText) findViewById(R.id.password_validate);
-        EditText email = (EditText) findViewById(R.id.email);
+        EditText email = (EditText) findViewById(R.id.emailVal);
         EditText first_name = (EditText) findViewById(R.id.first_name);
         EditText last_name = (EditText) findViewById(R.id.last_name);
         EditText phone = (EditText) findViewById(R.id.phone);
@@ -49,32 +50,35 @@ public class SignupActivity extends AppCompatActivity {
         String last_name_str = last_name.getText().toString();
         String phone_str = phone.getText().toString();
 
-        User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
-        UserAccess db = new UserAccess();
-        db.addUser(user, password_str);
-
-        int uid = user.getUserID();
-        EventAccess2 eventDB = new EventAccess2();
-
-        Event event = new Event(
-                uid,
-                "Hello New User!",
-                "Welcome to SingleMind! This is a placeholder Event to demonstrate the format. To Add a New Event, Tap the middle button at the Top of your Screen!",
-                "19-05-01 12:00:00");
-        eventDB.addEvent(event);
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-
-        /*
-        Optional<User> bad_user = db.getUser("mitch");
-        if(bad_user.isPresent()){
-            Log.d("http_delete_user", "User ayyy was found.");
-            Log.d("http_user_info", "User ayyy has name: " + bad_user.get().getUsername() + ". Id: " + bad_user.get().getUserID());
-        }else {
-            Log.d("http_delete_user","User ayyy was not found.");
+        if(username_str.isEmpty()
+                || email_str.isEmpty()
+                || password_str.isEmpty()
+                || password_validate_str.isEmpty()
+                || first_name_str.isEmpty()
+                || last_name_str.isEmpty()
+                || phone_str.isEmpty()) {
+            Toast.makeText(
+                    SignupActivity.this,
+                    "No Event added",
+                    Toast.LENGTH_SHORT).show();
         }
-        db.deleteUser(db.getUser("ayyy").get().getUserID());
-*/
+        else {
+            User user = new User(username_str, email_str, first_name_str, last_name_str, phone_str);
+            UserAccess db = new UserAccess();
+            db.addUser(user, password_str);
+
+            int uid = user.getUserID();
+            EventAccess2 eventDB = new EventAccess2();
+
+            Event event = new Event(
+                    uid,
+                    "Hello New User!",
+                    "Welcome to SingleMind! This is a placeholder Event to demonstrate the format. To Add a New Event, Tap the middle button at the Top of your Screen!",
+                    "19-05-01 12:00:00");
+            eventDB.addEvent(event);
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

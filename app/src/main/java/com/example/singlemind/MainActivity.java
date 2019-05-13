@@ -5,16 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.singlemind.backend.Event.AccessObjects.EventAccess2;
-import com.example.singlemind.backend.Event.TransferObjects.Event;
 import com.example.singlemind.backend.Event.TransferObjects.Events;
 import com.example.singlemind.backend.User.AccessObjects.UserAccess;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.singlemind.MESSAGE";
@@ -41,32 +39,51 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EventListActivity.class);
 
         EditText username = (EditText) findViewById(R.id.username);
-        EditText email = (EditText) findViewById(R.id.email);
+        EditText email = (EditText) findViewById(R.id.emailVal);
         EditText password = (EditText) findViewById(R.id.password);
 
         String username_str = username.getText().toString();
         String email_str = email.getText().toString();
         String password_str = password.getText().toString();
 
-        // Here, get info from database and update singleton.
-        Globals.getInstance().user = access.getUser(username_str).get();
+        if(username_str.isEmpty() || email_str.isEmpty() || password_str.isEmpty())
+            Toast.makeText(
+                    MainActivity.this,
+                    "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+        else {
+            try {
+                // Here, get info from database and update singleton.
+                Globals.getInstance().user = access.getUser(username_str).get();
 
-        int uid = Globals.getInstance().user.getUserID();
-        EventAccess2 eventDB = new EventAccess2();
-        List<Event> evnt;
+                int uid = Globals.getInstance().user.getUserID();
 
-        try {
-            evnt = new LinkedList<Event>(eventDB.getEventsByUserId(uid).events);
-            Events eventList = new Events(evnt);
-        } catch (Exception e)
-        {
-            Log.d("http_incoming_error", e.getMessage());
-            intent = new Intent(this, AddEventActivity.class);
+                EventAccess2 eventDB = new EventAccess2();
+                Events evnt;
+
+                try {
+                    evnt = new Events(eventDB.getEventsByUserId(uid).events);
+                    if (!evnt.events.isEmpty())
+                        startActivity(intent);
+                    else {
+                        intent = new Intent(this, AddEventActivity.class);
+                        startActivity(intent);
+                    }
+
+                } catch (Exception e) {
+                    Log.d("http_incoming_error", e.getMessage());
+                    //intent = new Intent(this, AddEventActivity.class);
+                    ActivityCompat.startActivityForResult(this, new Intent(this, AddEventActivity.class), 0, null);
+                }
+
+                //startActivity(intent);
+
+            } catch (Exception e) {
+                Toast.makeText(
+                        MainActivity.this,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
-        //if (evnt.isEmpty())
-        //    intent = new Intent(this, AddEventActivity.class);
-        //Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-
-        startActivity(intent);
     }
 }

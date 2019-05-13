@@ -13,7 +13,7 @@ public class ForgotPassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pass);
-        EditText email = (EditText) findViewById(R.id.email);
+        EditText email = (EditText) findViewById(R.id.emailVal);
     }
 
     public void onSubmit(View view){

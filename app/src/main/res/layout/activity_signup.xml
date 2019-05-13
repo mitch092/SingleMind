@@ -38,7 +38,7 @@
         tools:layout_editor_absoluteX="99dp" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/emailVal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

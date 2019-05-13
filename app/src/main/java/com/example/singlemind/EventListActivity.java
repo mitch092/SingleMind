@@ -3,12 +3,12 @@ package com.example.singlemind;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,41 +20,34 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
 
     EventAccess2 eventDB = new EventAccess2();
     MyRecyclerViewAdapter adapter;
-    //ArrayList<Event> events = new ArrayList<>();
     int uid;
     Events events = new Events();
-    boolean OnDialogCheck = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
-        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitNetwork().build();
-        //StrictMode.setThreadPolicy(policy);
-
         uid = Globals.getInstance().user.getUserID();
-
-        //test objects
-        /*events.add(new Event(2, "Birthday", "Billy's Birthday", "19-05-17 12:00:00"));
-        events.add(new Event(2, "Job Interview", "Meeting at Business Corp.", "19-05-20 08:00:00"));
-        events.add(new Event(2, "Date", "Go out for Coffee", "19-05-21 10:00:00"));
-        events.add(new Event(2, "Doctors Appt.", "Physical", "19-05-20 15:30:00"));
-        events.add(new Event());*/
 
         refreshEvents();
     }
 
     private void refreshEvents () {
-        events = eventDB.getEventsByUserId(uid);
-        //Events e = new Events(events);
+        //try {
+            events = eventDB.getEventsByUserId(uid);
+            //Events e = new Events(events);
 
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvEvents);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, events);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+            // set up the RecyclerView
+            RecyclerView recyclerView = findViewById(R.id.rvEvents);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new MyRecyclerViewAdapter(this, events);
+            adapter.setClickListener(this);
+            recyclerView.setAdapter(adapter);
+        //} catch (Exception e) {
+        //    Intent intent = new Intent(this, AddEventActivity.class);
+        //    startActivity(intent);
+        //}
     }
 
     @Override
@@ -68,7 +61,7 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
             minList = true;
         else minList = false;
 
-        Log.d("Recycler Item Counter", "" + adapter.getItemCount());
+        //Log.d("Recycler Item Counter", "" + adapter.getItemCount());
 
         if(!minList) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -121,14 +114,18 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
+
     public void onAdd(View view){
         Intent intent = new Intent(this, AddEventActivity.class);
         startActivity(intent);
+
+        ActivityCompat.startActivityForResult(this, new Intent(this, AddEventActivity.class), 0, null);
     }
-    public void onSettings(View view){
+
+    /*public void onSettings(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     @Override
     protected void onStart() {
@@ -143,11 +140,6 @@ public class EventListActivity extends AppCompatActivity implements MyRecyclerVi
     @Override
     protected void onResume() {
         super.onResume();
-        /*if(OnDialogCheck) {
-            Intent intent = new Intent(this, AddEventActivity.class);
-            startActivity(intent);
-        }
-        else OnDialogCheck = false;*/
     }
     @Override
     protected void onPause() {
