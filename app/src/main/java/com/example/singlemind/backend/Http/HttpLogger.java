@@ -2,7 +2,6 @@ package com.example.singlemind.backend.Http;
 
 import android.util.Log;
 
-
 import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;

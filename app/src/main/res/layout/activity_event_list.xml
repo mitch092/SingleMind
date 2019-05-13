@@ -9,44 +9,39 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
         android:orientation="horizontal">
 
-        <ImageButton
+        <Button
             android:id="@+id/account"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:onClick="onAcct"
-            android:scaleType="fitStart"
-            tools:srcCompat="@drawable/acct" />
+            android:text="Account Information"
+            android:textSize="18sp" />
+        //tools:srcCompat="@drawable/acct" />
 
-        <ImageButton
+        <Button
             android:id="@+id/addEvent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:onClick="onAdd"
-            android:scaleType="fitStart"
-            tools:srcCompat="@drawable/plus" />
-
-        <ImageButton
-            android:id="@+id/settings"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:onClick="onSettings"
-            android:scaleType="fitStart"
-            tools:srcCompat="@drawable/gear" />
+            android:text="Add New Event"
+            android:textSize="18sp" />
+        //tools:srcCompat="@drawable/plus" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEvents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:scrollbars="vertical" />
 
 </LinearLayout>

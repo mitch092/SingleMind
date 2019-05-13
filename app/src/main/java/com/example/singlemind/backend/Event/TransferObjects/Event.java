@@ -1,9 +1,5 @@
 package com.example.singlemind.backend.Event.TransferObjects;
 
-import com.example.singlemind.backend.User.TransferObjects.User;
-
-import java.time.LocalDateTime;
-
 public class Event {
     public Event(int UserID, String EventName,
                  String EventDesc, String EventDate){
@@ -24,7 +20,18 @@ public class Event {
         this.CreationDate = "";
     }
 
-
+    public Event getEventByUserID(int uid) {
+        if (uid == UserID)
+            return this;
+        else
+            return null;
+    }
+    public Event getEventByEventID(int eid) {
+        if (eid == EventID)
+            return this;
+        else
+            return null;
+    }
     public int getUserID(){
         return this.UserID;
     }
